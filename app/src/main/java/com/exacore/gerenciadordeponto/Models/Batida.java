@@ -1,5 +1,7 @@
 package com.exacore.gerenciadordeponto.Models;
 
+import com.exacore.gerenciadordeponto.Modules.InterfaceMVP;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToOne;
@@ -10,11 +12,11 @@ import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.NotNull;
 
 @Entity
-public class Batida {
+public class Batida implements InterfaceMVP.ModelBatida{
     @Id(autoincrement = true)
     private long id;
     private Date dataBatida;
-    
+
     private long usuarioId;
 
     @ToOne(joinProperty = "usuarioId")

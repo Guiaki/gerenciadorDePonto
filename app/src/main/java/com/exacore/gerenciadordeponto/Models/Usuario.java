@@ -1,5 +1,7 @@
 package com.exacore.gerenciadordeponto.Models;
 
+import com.exacore.gerenciadordeponto.Modules.InterfaceMVP;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
@@ -7,7 +9,7 @@ import java.util.Date;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
-public class Usuario {
+public class Usuario implements InterfaceMVP.ModelUsuario{
     @Id(autoincrement = true)
     private long id;
     private String nome;
