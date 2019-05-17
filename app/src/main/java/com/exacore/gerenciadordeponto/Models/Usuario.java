@@ -15,6 +15,13 @@ public class Usuario implements InterfaceMVP.ModelUsuario{
     private String nome;
     private Date dataNascimento;
     private long PIS;
+
+    public Usuario(String nome, Date dataNascimento, long PIS) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.PIS = PIS;
+    }
+
     @Generated(hash = 601359280)
     public Usuario(long id, String nome, Date dataNascimento, long PIS) {
         this.id = id;

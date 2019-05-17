@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Modules.InterfaceMVP;
 import com.exacore.gerenciadordeponto.Modules.Presenter;
 import com.exacore.gerenciadordeponto.R;
@@ -21,10 +22,12 @@ public class TelaInicial extends AppCompatActivity implements InterfaceMVP.ViewT
 
         //Inicializa o presenter caso não esteja inicializado, caso esteja, mantem o uso dele
         //Assim não é criado um novo quando mudado a orientação, por exemplo.
+
         if(presenter == null){
             presenter = new Presenter();
         }
         presenter.setTelaInicialView(this);
+        presenter.setCurrentContext(this.getApplicationContext());
 
         //Linka botões com Presenter
         Button botaoBaterPonto = findViewById(R.id.botaoBaterPonto);

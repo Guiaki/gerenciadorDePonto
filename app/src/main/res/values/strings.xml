@@ -6,4 +6,5 @@
     <string name="hintNomeCompleto">Nome Completo</string>
     <string name="hintDataNascimento">Data Nascimento</string>
     <string name="hintPIS">PIS</string>
+    <string name="botaoCadastrar">Cadastrar</string>
 </resources>

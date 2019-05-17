@@ -1,5 +1,9 @@
 package com.exacore.gerenciadordeponto.Modules;
 
+import android.content.Context;
+import android.text.Editable;
+
+import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Models.DaoSession;
 import com.exacore.gerenciadordeponto.Models.Usuario;
 import com.exacore.gerenciadordeponto.Views.TelaCadastro;
@@ -41,7 +45,8 @@ public interface InterfaceMVP {
 
     interface ViewTelaCadastro{
         void displayDatePickerDialog(int day, int month, int year);
-        void setDataNascimentoText(String texto);
+        void setDataNascimentoText(Date date, String texto);
+        void navigateToTelaInicial();
     }
 
     interface Presenter {
@@ -52,5 +57,8 @@ public interface InterfaceMVP {
         void botaoVisualizarBatidasOnClick();
         void openDatePicker();
         void datePickerSetDate(int year, int monthOfYear, int dayOfMonth);
+        void cadastrarForm(String nomeCompleto, Date dataNascimento, String PIS);
+        void setCurrentContext(Context current);
+        void setDaoMaster(DaoMaster.DevOpenHelper helper);
     }
 }
