@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.TelaCadastro"></activity>
+        <activity android:name=".Views.TelaCadastro" />
+        <activity android:name=".Views.TelaVisualizarBatidas"></activity>
     </application>
 
 </manifest>

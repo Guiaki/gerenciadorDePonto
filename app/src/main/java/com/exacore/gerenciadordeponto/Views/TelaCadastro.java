@@ -30,6 +30,7 @@ public class TelaCadastro extends AppCompatActivity implements InterfaceMVP.View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_cadastro);
+
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "gerenciadorPonto.db", null);
         if(presenter == null){
             presenter = new Presenter();

@@ -7,18 +7,23 @@ import android.widget.Toast;
 import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Models.DaoSession;
 import com.exacore.gerenciadordeponto.Models.Usuario;
+import com.exacore.gerenciadordeponto.Models.UsuarioDao;
 import com.exacore.gerenciadordeponto.Views.TelaCadastro;
+import com.exacore.gerenciadordeponto.Views.TelaVisualizarBatidas;
 
 import org.greenrobot.greendao.database.Database;
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class Presenter implements InterfaceMVP.Presenter {
     private InterfaceMVP.ViewTelaInicial telaInicial;
     private InterfaceMVP.ViewTelaCadastro telaCadastro;
+    private InterfaceMVP.ViewTelaVisualizarBatidas telaViewBatidas;
     private Calendar meuCalendario;
     private DaoMaster.DevOpenHelper helper;
     private Context currentContext;
@@ -39,6 +44,11 @@ public class Presenter implements InterfaceMVP.Presenter {
     }
 
     @Override
+    public void setTelaVisualizarBatidas(TelaVisualizarBatidas telaViewBatidas) {
+        this.telaViewBatidas = telaViewBatidas;
+    }
+
+    @Override
     public void botaoBaterPontoOnClick() {
 
     }
@@ -50,7 +60,7 @@ public class Presenter implements InterfaceMVP.Presenter {
 
     @Override
     public void botaoVisualizarBatidasOnClick() {
-
+        telaInicial.navigateToVisualizarBatidas();
     }
 
     @Override
@@ -87,6 +97,15 @@ public class Presenter implements InterfaceMVP.Presenter {
     @Override
     public void setDaoMaster(DaoMaster.DevOpenHelper helper) {
         this.helper = helper;
+    }
+
+    @Override
+    public void loadAllUsers() {
+        Database db = helper.getWritableDb();
+        daoSession = new DaoMaster(db).newSession();
+        List<Usuario> Usuarios = daoSession.getUsuarioDao().queryBuilder()
+            .orderAsc(UsuarioDao.Properties.Nome)
+            .list();
     }
 
     public void updateLabel() {

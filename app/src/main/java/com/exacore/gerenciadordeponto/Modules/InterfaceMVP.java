@@ -7,6 +7,7 @@ import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Models.DaoSession;
 import com.exacore.gerenciadordeponto.Models.Usuario;
 import com.exacore.gerenciadordeponto.Views.TelaCadastro;
+import com.exacore.gerenciadordeponto.Views.TelaVisualizarBatidas;
 
 import org.greenrobot.greendao.annotation.NotNull;
 
@@ -41,6 +42,7 @@ public interface InterfaceMVP {
 
     interface ViewTelaInicial{
         void navigateToCadastro();
+        void navigateToVisualizarBatidas();
     }
 
     interface ViewTelaCadastro{
@@ -49,9 +51,14 @@ public interface InterfaceMVP {
         void navigateToTelaInicial();
     }
 
+    interface ViewTelaVisualizarBatidas{
+        void navigateToTelaInicial();
+    }
+
     interface Presenter {
         void setTelaInicialView(InterfaceMVP.ViewTelaInicial telaInicial);
         void setTelaCadastroView(TelaCadastro telaCadastro);
+        void setTelaVisualizarBatidas(TelaVisualizarBatidas telaViewBatidas);
         void botaoBaterPontoOnClick();
         void botaoCadastroOnClick();
         void botaoVisualizarBatidasOnClick();
@@ -60,5 +67,6 @@ public interface InterfaceMVP {
         void cadastrarForm(String nomeCompleto, Date dataNascimento, String PIS);
         void setCurrentContext(Context current);
         void setDaoMaster(DaoMaster.DevOpenHelper helper);
+        void loadAllUsers();
     }
 }
