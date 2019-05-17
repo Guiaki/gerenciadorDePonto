@@ -2,7 +2,6 @@ package com.exacore.gerenciadordeponto.Modules;
 
 import com.exacore.gerenciadordeponto.Models.DaoSession;
 import com.exacore.gerenciadordeponto.Models.Usuario;
-import com.exacore.gerenciadordeponto.telaInicial;
 
 import org.greenrobot.greendao.annotation.NotNull;
 
@@ -35,7 +34,14 @@ public interface InterfaceMVP {
         public void setPIS(long PIS);
     }
 
+    public interface ViewTelaInicial{
+
+    }
+
     public interface Presenter {
-        void setView(telaInicial telaInicial);
+        void setTelaInicialView(InterfaceMVP.ViewTelaInicial telaInicial);
+        void botaoBaterPontoOnClick();
+        void botaoCadastroOnClick();
+        void botaoVisualizarBatidasOnClick();
     }
 }
