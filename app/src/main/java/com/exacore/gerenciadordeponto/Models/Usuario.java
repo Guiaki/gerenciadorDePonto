@@ -11,19 +11,12 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class Usuario implements InterfaceMVP.ModelUsuario{
     @Id(autoincrement = true)
-    private long id;
+    private Long id;
     private String nome;
     private Date dataNascimento;
     private long PIS;
-
-    public Usuario(String nome, Date dataNascimento, long PIS) {
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.PIS = PIS;
-    }
-
-    @Generated(hash = 601359280)
-    public Usuario(long id, String nome, Date dataNascimento, long PIS) {
+    @Generated(hash = 1945652949)
+    public Usuario(Long id, String nome, Date dataNascimento, long PIS) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -32,10 +25,10 @@ public class Usuario implements InterfaceMVP.ModelUsuario{
     @Generated(hash = 562950751)
     public Usuario() {
     }
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getNome() {
@@ -56,4 +49,5 @@ public class Usuario implements InterfaceMVP.ModelUsuario{
     public void setPIS(long PIS) {
         this.PIS = PIS;
     }
+    
 }

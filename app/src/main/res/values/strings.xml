@@ -7,4 +7,6 @@
     <string name="hintDataNascimento">Data Nascimento</string>
     <string name="hintPIS">PIS</string>
     <string name="botaoCadastrar">Cadastrar</string>
+    <string name="placeHolder">João Silva</string>
+    <string name="botaoVoltar">Voltar</string>
 </resources>

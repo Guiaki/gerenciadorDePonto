@@ -11,7 +11,9 @@ import com.exacore.gerenciadordeponto.Views.TelaVisualizarBatidas;
 
 import org.greenrobot.greendao.annotation.NotNull;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public interface InterfaceMVP {
     interface ModelBatida{
@@ -30,8 +32,8 @@ public interface InterfaceMVP {
     }
 
     interface ModelUsuario{
-        long getId();
-        void setId(long id);
+        Long getId();
+        void setId(Long id);
         String getNome();
         void setNome(String nome);
         Date getDataNascimento();
@@ -67,6 +69,7 @@ public interface InterfaceMVP {
         void cadastrarForm(String nomeCompleto, Date dataNascimento, String PIS);
         void setCurrentContext(Context current);
         void setDaoMaster(DaoMaster.DevOpenHelper helper);
-        void loadAllUsers();
+        ArrayList<String> loadAllUsers();
+        void botaobotaoVoltarPrincipalOnClick();
     }
 }

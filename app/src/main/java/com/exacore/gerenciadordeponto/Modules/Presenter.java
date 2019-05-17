@@ -2,6 +2,7 @@ package com.exacore.gerenciadordeponto.Modules;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.exacore.gerenciadordeponto.Models.DaoMaster;
@@ -14,7 +15,9 @@ import com.exacore.gerenciadordeponto.Views.TelaVisualizarBatidas;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -84,7 +87,7 @@ public class Presenter implements InterfaceMVP.Presenter {
     public void cadastrarForm(String nomeCompleto, Date dataNascimento, String PIS) {
         Database db = helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
-        Usuario novoUsuario = new Usuario(nomeCompleto, dataNascimento, Long.parseLong(PIS));
+        Usuario novoUsuario = new Usuario(null, nomeCompleto, dataNascimento, Long.parseLong(PIS));
         daoSession.insert(novoUsuario);
         telaCadastro.navigateToTelaInicial();
     }
@@ -100,12 +103,22 @@ public class Presenter implements InterfaceMVP.Presenter {
     }
 
     @Override
-    public void loadAllUsers() {
+    public ArrayList<String> loadAllUsers() {
         Database db = helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
-        List<Usuario> Usuarios = daoSession.getUsuarioDao().queryBuilder()
+        List<Usuario> usuarios = daoSession.getUsuarioDao().queryBuilder()
             .orderAsc(UsuarioDao.Properties.Nome)
             .list();
+        ArrayList<String> nomes = new ArrayList<String>();
+        for(Usuario user: usuarios){
+            nomes.add(user.getNome());
+        }
+        return nomes;
+    }
+
+    @Override
+    public void botaobotaoVoltarPrincipalOnClick() {
+        telaViewBatidas.navigateToTelaInicial();
     }
 
     public void updateLabel() {
