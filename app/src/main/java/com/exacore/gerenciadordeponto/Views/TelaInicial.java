@@ -1,5 +1,6 @@
 package com.exacore.gerenciadordeponto.Views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -47,5 +48,11 @@ public class TelaInicial extends AppCompatActivity implements InterfaceMVP.ViewT
                 presenter.botaoVisualizarBatidasOnClick();
             }
         });
+    }
+
+    @Override
+    public void navigateToCadastro() {
+        Intent intent = new Intent(this, TelaCadastro.class);
+        startActivity(intent);
     }
 }

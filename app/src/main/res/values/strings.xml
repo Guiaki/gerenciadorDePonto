@@ -3,4 +3,7 @@
     <string name="botaoCadastro">Cadastrar</string>
     <string name="botaoBaterPonto">Bater Ponto</string>
     <string name="botaoVisualizarBatidas">Visualizar Batidas</string>
+    <string name="hintNomeCompleto">Nome Completo</string>
+    <string name="hintDataNascimento">Data Nascimento</string>
+    <string name="hintPIS">PIS</string>
 </resources>
