@@ -12,10 +12,12 @@ Feito usando JAVA no Android Studio.
 ## 1. Como compilar?
 
 *Projeto criado no Android Studio*
+
 *1 - Faça um git clone*
 
 ```cmd
 $git clone git://github.com/Guiaki/gerenciadorDePonto.git
 ```
 *2 - Abra o Projeto no Android Studio*
+
 *3 - Faça um Build & Run*
