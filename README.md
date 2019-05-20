@@ -1,13 +1,12 @@
 ﻿# Gerenciador de Ponto
 
-Aplicativo que faz requisição na API do TMDB buscando os filmes Em Cartaz/Em Breve.
+Aplicativo para cadastro de usuario, bater ponto para marcar presença e exibição dos pontos feitos.
 
-Feito usando React Native
+Feito usando JAVA no Android Studio.
 
 ![Demo](https://github.com/Guiaki/gerenciadorDePonto/blob/master/tela%20principal.jpeg)
-![Demo](https://github.com/Guiaki/gerenciadorDePonto/blob/master/tela%20cadastro.jpeg)
 ![Demo](https://github.com/Guiaki/gerenciadorDePonto/blob/master/tela%20ponto%201.jpeg)
-![Demo](https://github.com/Guiaki/gerenciadorDePonto/blob/master/tela%20ponto%201.jpeg)
+![Demo](https://github.com/Guiaki/gerenciadorDePonto/blob/master/tela%20ponto%202.jpeg)
 ![Demo](https://github.com/Guiaki/gerenciadorDePonto/blob/master/tela%20visualizar%20pontos.jpeg)
 
 ## 1. Como compilar?
