@@ -58,7 +58,7 @@ public class Presenter implements InterfaceMVP.Presenter {
 
     @Override
     public void botaoBaterPontoOnClick() {
-
+        telaInicial.navigateToBaterPonto();
     }
 
     @Override

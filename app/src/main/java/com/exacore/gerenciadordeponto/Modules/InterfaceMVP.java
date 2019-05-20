@@ -46,6 +46,7 @@ public interface InterfaceMVP {
     interface ViewTelaInicial{
         void navigateToCadastro();
         void navigateToVisualizarBatidas();
+        void navigateToBaterPonto();
     }
 
     interface ViewTelaCadastro{
@@ -60,6 +61,10 @@ public interface InterfaceMVP {
 
     interface ViewTelaSucesso{
         void setTexto(String principal, String secundario);
+        void navigateToTelaInicial();
+    }
+
+    interface ViewTelaBaterPonto{
         void navigateToTelaInicial();
     }
 

@@ -64,4 +64,10 @@ public class TelaInicial extends AppCompatActivity implements InterfaceMVP.ViewT
         Intent intent = new Intent(this, TelaVisualizarBatidas.class);
         startActivity(intent);
     }
+
+    @Override
+    public void navigateToBaterPonto() {
+        Intent intent = new Intent(this, TelaBaterPonto.class);
+        startActivity(intent);
+    }
 }
