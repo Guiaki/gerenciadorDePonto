@@ -80,7 +80,8 @@ public class TelaCadastro extends AppCompatActivity implements InterfaceMVP.View
 
     @Override
     public void navigateToTelaInicial() {
-        Intent intent = new Intent(this, TelaInicial.class);
+        Intent intent = new Intent(this, TelaMsgSucesso.class);
+        intent.putExtra("principal", "Cadastro realizado com sucesso!");
         startActivity(intent);
     }
 }

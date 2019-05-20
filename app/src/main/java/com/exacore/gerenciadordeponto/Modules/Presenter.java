@@ -10,12 +10,11 @@ import com.exacore.gerenciadordeponto.Models.DaoSession;
 import com.exacore.gerenciadordeponto.Models.Usuario;
 import com.exacore.gerenciadordeponto.Models.UsuarioDao;
 import com.exacore.gerenciadordeponto.Views.TelaCadastro;
+import com.exacore.gerenciadordeponto.Views.TelaMsgSucesso;
 import com.exacore.gerenciadordeponto.Views.TelaVisualizarBatidas;
 
 import org.greenrobot.greendao.database.Database;
-import org.greenrobot.greendao.query.QueryBuilder;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,6 +26,7 @@ public class Presenter implements InterfaceMVP.Presenter {
     private InterfaceMVP.ViewTelaInicial telaInicial;
     private InterfaceMVP.ViewTelaCadastro telaCadastro;
     private InterfaceMVP.ViewTelaVisualizarBatidas telaViewBatidas;
+    private InterfaceMVP.ViewTelaSucesso telaSucesso;
     private Calendar meuCalendario;
     private DaoMaster.DevOpenHelper helper;
     private Context currentContext;
@@ -49,6 +49,11 @@ public class Presenter implements InterfaceMVP.Presenter {
     @Override
     public void setTelaVisualizarBatidas(TelaVisualizarBatidas telaViewBatidas) {
         this.telaViewBatidas = telaViewBatidas;
+    }
+
+    @Override
+    public void setTelaViewSucesso(TelaMsgSucesso telaViewSucesso) {
+        telaSucesso = telaViewSucesso;
     }
 
     @Override
@@ -119,6 +124,11 @@ public class Presenter implements InterfaceMVP.Presenter {
     @Override
     public void botaobotaoVoltarPrincipalOnClick() {
         telaViewBatidas.navigateToTelaInicial();
+    }
+
+    @Override
+    public void botaobotaoVoltarPrincipalSucessoOnClick() {
+        telaSucesso.navigateToTelaInicial();
     }
 
     public void updateLabel() {

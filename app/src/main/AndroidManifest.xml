@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Views.TelaCadastro" />
-        <activity android:name=".Views.TelaVisualizarBatidas"></activity>
+        <activity android:name=".Views.TelaVisualizarBatidas" />
+        <activity android:name=".Views.TelaMsgSucesso" />
+        <activity android:name=".Views.TelaBaterPonto"></activity>
     </application>
 
 </manifest>

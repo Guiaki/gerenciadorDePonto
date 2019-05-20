@@ -7,6 +7,7 @@ import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Models.DaoSession;
 import com.exacore.gerenciadordeponto.Models.Usuario;
 import com.exacore.gerenciadordeponto.Views.TelaCadastro;
+import com.exacore.gerenciadordeponto.Views.TelaMsgSucesso;
 import com.exacore.gerenciadordeponto.Views.TelaVisualizarBatidas;
 
 import org.greenrobot.greendao.annotation.NotNull;
@@ -57,10 +58,16 @@ public interface InterfaceMVP {
         void navigateToTelaInicial();
     }
 
+    interface ViewTelaSucesso{
+        void setTexto(String principal, String secundario);
+        void navigateToTelaInicial();
+    }
+
     interface Presenter {
         void setTelaInicialView(InterfaceMVP.ViewTelaInicial telaInicial);
         void setTelaCadastroView(TelaCadastro telaCadastro);
         void setTelaVisualizarBatidas(TelaVisualizarBatidas telaViewBatidas);
+        void setTelaViewSucesso(TelaMsgSucesso telaViewSucesso);
         void botaoBaterPontoOnClick();
         void botaoCadastroOnClick();
         void botaoVisualizarBatidasOnClick();
@@ -71,5 +78,6 @@ public interface InterfaceMVP {
         void setDaoMaster(DaoMaster.DevOpenHelper helper);
         ArrayList<String> loadAllUsers();
         void botaobotaoVoltarPrincipalOnClick();
+        void botaobotaoVoltarPrincipalSucessoOnClick();
     }
 }
