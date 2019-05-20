@@ -59,7 +59,7 @@ public class TelaCadastro extends AppCompatActivity implements InterfaceMVP.View
         botaoCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.cadastrarForm(editNomeCompleto.getText().toString(), dataFinal, editPIS.getText().toString());
+                presenter.cadastrarForm(editNomeCompleto.getText().toString(), editDataNascimento.getText().toString(), dataFinal, editPIS.getText().toString());
             }
         });
     }
@@ -79,7 +79,7 @@ public class TelaCadastro extends AppCompatActivity implements InterfaceMVP.View
     }
 
     @Override
-    public void navigateToTelaInicial() {
+    public void navigateToTelaSucesso() {
         Intent intent = new Intent(this, TelaMsgSucesso.class);
         intent.putExtra("principal", "Cadastro realizado com sucesso!");
         startActivity(intent);

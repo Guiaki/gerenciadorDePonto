@@ -1,9 +1,6 @@
 package com.exacore.gerenciadordeponto.Modules;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.exacore.gerenciadordeponto.Models.Batida;
@@ -103,17 +100,23 @@ public class Presenter implements InterfaceMVP.Presenter {
     }
 
     @Override
-    public void cadastrarForm(String nomeCompleto, Date dataNascimento, String PIS) {
-        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
-        cal.setTime(dataNascimento);
-        int dia = cal.get(Calendar.DAY_OF_MONTH);
-        int mes = cal.get(Calendar.MONTH);
-        int ano = cal.get(Calendar.YEAR);
-        Database db = helper.getWritableDb();
-        daoSession = new DaoMaster(db).newSession();
-        Usuario novoUsuario = new Usuario(null, nomeCompleto, dia, mes, ano, Long.parseLong(PIS));
-        daoSession.insert(novoUsuario);
-        telaCadastro.navigateToTelaInicial();
+    public void cadastrarForm(String nomeCompleto, String dataText, Date dataNascimento, String PIS) {
+        if(nomeCompleto.isEmpty() || dataText.isEmpty() || PIS.isEmpty()) {
+            Toasty.error(currentContext, "Favor inserir todos os campos.",
+                    Toast.LENGTH_SHORT, true).show();
+        }else{
+            Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
+            cal.setTime(dataNascimento);
+            int dia = cal.get(Calendar.DAY_OF_MONTH);
+            int mes = cal.get(Calendar.MONTH);
+            int ano = cal.get(Calendar.YEAR);
+
+            Database db = helper.getWritableDb();
+            daoSession = new DaoMaster(db).newSession();
+            Usuario novoUsuario = new Usuario(null, nomeCompleto, dia, mes, ano, Long.parseLong(PIS));
+            daoSession.insert(novoUsuario);
+            telaCadastro.navigateToTelaSucesso();
+        }
     }
 
     @Override
@@ -135,11 +138,13 @@ public class Presenter implements InterfaceMVP.Presenter {
             .list();
         ArrayList<String> nomes = new ArrayList<String>();
         for(Batida batida: batidas){
-            String horaBatida = (new SimpleDateFormat(" dd/MM/yyyy HH:mm", Locale.getDefault()).format(batida.getDataBatida())).toLowerCase();
+            String horaBatida = (new SimpleDateFormat(" dd/MM/yyyy HH:mm",
+                    Locale.getDefault()).format(batida.getDataBatida())).toLowerCase();
             nomes.add(batida.getUsuario().getNome() + horaBatida);
         }
         if(nomes.isEmpty()){
-            Toasty.error(currentContext, "Nenhuma batida encontrada.", Toast.LENGTH_SHORT, true).show();
+            Toasty.error(currentContext, "Nenhuma batida encontrada.",
+                    Toast.LENGTH_SHORT, true).show();
             telaViewBatidas.navigateToTelaInicial();
         }
         return nomes;
