@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class TelaVisualizarBatidas extends AppCompatActivity implements InterfaceMVP.ViewTelaVisualizarBatidas{
 
     private static Presenter presenter;
-    private ArrayList<String> usuarios;
+    private ArrayList<String> batidas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class TelaVisualizarBatidas extends AppCompatActivity implements Interfac
         presenter.setDaoMaster(helper);
         presenter.setTelaVisualizarBatidas(this);
         presenter.setCurrentContext(this.getApplicationContext());
-        usuarios = presenter.loadAllUsers();
+        batidas = presenter.loadAllBatidas();
         iniciarRecyclerView();
 
         Button botaoVoltarPrincipal = findViewById(R.id.botaoVoltarPrincipal);
@@ -55,7 +55,7 @@ public class TelaVisualizarBatidas extends AppCompatActivity implements Interfac
         RecyclerView recyclerView = findViewById(R.id.listaBatidas);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewAdapterVisualizarBatidas adapter = new RecyclerViewAdapterVisualizarBatidas(this, usuarios);
+        RecyclerViewAdapterVisualizarBatidas adapter = new RecyclerViewAdapterVisualizarBatidas(this, batidas);
         recyclerView.setAdapter(adapter);
     }
 }

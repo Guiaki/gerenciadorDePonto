@@ -25,7 +25,7 @@ public class BatidaDao extends AbstractDao<Batida, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property DataBatida = new Property(1, java.util.Date.class, "dataBatida", false, "DATA_BATIDA");
         public final static Property UsuarioId = new Property(2, long.class, "usuarioId", false, "USUARIO_ID");
     }
@@ -46,7 +46,7 @@ public class BatidaDao extends AbstractDao<Batida, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"BATIDA\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ," + // 0: id
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"DATA_BATIDA\" INTEGER," + // 1: dataBatida
                 "\"USUARIO_ID\" INTEGER NOT NULL );"); // 2: usuarioId
     }
@@ -60,7 +60,11 @@ public class BatidaDao extends AbstractDao<Batida, Long> {
     @Override
     protected final void bindValues(DatabaseStatement stmt, Batida entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
  
         java.util.Date dataBatida = entity.getDataBatida();
         if (dataBatida != null) {
@@ -72,7 +76,11 @@ public class BatidaDao extends AbstractDao<Batida, Long> {
     @Override
     protected final void bindValues(SQLiteStatement stmt, Batida entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
  
         java.util.Date dataBatida = entity.getDataBatida();
         if (dataBatida != null) {
@@ -89,13 +97,13 @@ public class BatidaDao extends AbstractDao<Batida, Long> {
 
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
     public Batida readEntity(Cursor cursor, int offset) {
         Batida entity = new Batida( //
-            cursor.getLong(offset + 0), // id
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : new java.util.Date(cursor.getLong(offset + 1)), // dataBatida
             cursor.getLong(offset + 2) // usuarioId
         );
@@ -104,7 +112,7 @@ public class BatidaDao extends AbstractDao<Batida, Long> {
      
     @Override
     public void readEntity(Cursor cursor, Batida entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setDataBatida(cursor.isNull(offset + 1) ? null : new java.util.Date(cursor.getLong(offset + 1)));
         entity.setUsuarioId(cursor.getLong(offset + 2));
      }
@@ -126,7 +134,7 @@ public class BatidaDao extends AbstractDao<Batida, Long> {
 
     @Override
     public boolean hasKey(Batida entity) {
-        throw new UnsupportedOperationException("Unsupported for entities with a non-null key");
+        return entity.getId() != null;
     }
 
     @Override

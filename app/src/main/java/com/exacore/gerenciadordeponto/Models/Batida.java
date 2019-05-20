@@ -1,5 +1,8 @@
 package com.exacore.gerenciadordeponto.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.exacore.gerenciadordeponto.Modules.InterfaceMVP;
 
 import org.greenrobot.greendao.annotation.Entity;
@@ -12,24 +15,24 @@ import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.NotNull;
 
 @Entity
-public class Batida implements InterfaceMVP.ModelBatida{
+public class Batida implements InterfaceMVP.ModelBatida, Parcelable{
     @Id(autoincrement = true)
-    private long id;
+    private Long id;
     private Date dataBatida;
 
     private long usuarioId;
 
     @ToOne(joinProperty = "usuarioId")
     private Usuario usuario;
-    /** Used to resolve relations */
-    @Generated(hash = 2040040024)
-    private transient DaoSession daoSession;
-    /** Used for active entity operations. */
-    @Generated(hash = 1182204652)
-    private transient BatidaDao myDao;
 
-    @Generated(hash = 1041725449)
-    public Batida(long id, Date dataBatida, long usuarioId) {
+    protected Batida(Parcel in) {
+        id = in.readLong();
+        usuarioId = in.readLong();
+        usuario = in.readParcelable(Usuario.class.getClassLoader());
+    }
+
+    @Generated(hash = 1447901918)
+    public Batida(Long id, Date dataBatida, long usuarioId) {
         this.id = id;
         this.dataBatida = dataBatida;
         this.usuarioId = usuarioId;
@@ -39,12 +42,33 @@ public class Batida implements InterfaceMVP.ModelBatida{
     public Batida() {
     }
 
-    public long getId() {
-        return this.id;
+    /** Used to resolve relations */
+    @Generated(hash = 2040040024)
+    private transient DaoSession daoSession;
+    /** Used for active entity operations. */
+    @Generated(hash = 1182204652)
+    private transient BatidaDao myDao;
+    @Generated(hash = 41136015)
+    private transient Long usuario__resolvedKey;
+
+    public static final Creator<Batida> CREATOR = new Creator<Batida>() {
+        @Override
+        public Batida createFromParcel(Parcel in) {
+            return new Batida(in);
+        }
+
+        @Override
+        public Batida[] newArray(int size) {
+            return new Batida[size];
+        }
+    };
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Long getId() {
+        return this.id;
     }
 
     public Date getDataBatida() {
@@ -62,9 +86,6 @@ public class Batida implements InterfaceMVP.ModelBatida{
     public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
     }
-
-    @Generated(hash = 41136015)
-    private transient Long usuario__resolvedKey;
 
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 1575739643)
@@ -140,5 +161,22 @@ public class Batida implements InterfaceMVP.ModelBatida{
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getBatidaDao() : null;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(id);
+        }
+        dest.writeLong(usuarioId);
+        dest.writeParcelable(usuario, flags);
     }
 }

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.exacore.gerenciadordeponto.Models.Batida;
+import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Modules.InterfaceMVP;
 import com.exacore.gerenciadordeponto.Modules.Presenter;
 import com.exacore.gerenciadordeponto.R;
@@ -20,9 +22,11 @@ public class TelaMsgSucesso extends AppCompatActivity implements InterfaceMVP.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_msg_sucesso);
 
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "gerenciadorPonto.db", null);
         if(presenter == null){
             presenter = new Presenter();
         }
+        presenter.setDaoMaster(helper);
         presenter.setTelaViewSucesso(this);
         presenter.setCurrentContext(this.getApplicationContext());
 

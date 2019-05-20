@@ -2,9 +2,12 @@ package com.exacore.gerenciadordeponto.Modules;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.exacore.gerenciadordeponto.Models.Batida;
+import com.exacore.gerenciadordeponto.Models.BatidaDao;
 import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Models.DaoSession;
 import com.exacore.gerenciadordeponto.Models.Usuario;
@@ -24,6 +27,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import es.dmoral.toasty.Toasty;
 
 public class Presenter implements InterfaceMVP.Presenter {
     private InterfaceMVP.ViewTelaInicial telaInicial;
@@ -122,17 +127,22 @@ public class Presenter implements InterfaceMVP.Presenter {
     }
 
     @Override
-    public ArrayList<String> loadAllUsers() {
+    public ArrayList<String> loadAllBatidas() {
         Database db = helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
-        List<Usuario> usuarios = daoSession.getUsuarioDao().queryBuilder()
-            .orderAsc(UsuarioDao.Properties.Nome)
+        List<Batida> batidas = daoSession.getBatidaDao().queryBuilder()
+            .orderDesc(BatidaDao.Properties.DataBatida)
             .list();
         ArrayList<String> nomes = new ArrayList<String>();
-        for(Usuario user: usuarios){
-            nomes.add(user.getNome());
+        for(Batida batida: batidas){
+            String horaBatida = (new SimpleDateFormat(" dd/MM/yyyy HH:mm", Locale.getDefault()).format(batida.getDataBatida())).toLowerCase();
+            nomes.add(batida.getUsuario().getNome() + horaBatida);
         }
-        return null;
+        if(nomes.isEmpty()){
+            Toasty.error(currentContext, "Nenhuma batida encontrada.", Toast.LENGTH_SHORT, true).show();
+            telaViewBatidas.navigateToTelaInicial();
+        }
+        return nomes;
     }
 
     @Override
@@ -145,17 +155,27 @@ public class Presenter implements InterfaceMVP.Presenter {
         telaSucesso.navigateToTelaInicial();
     }
 
-
     @Override
     public void onClickBaterPonto(String letraInicial, int diaAniversario) {
         Database db = helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
         QueryBuilder<Usuario> qb = daoSession.getUsuarioDao().queryBuilder();
-        qb.and(UsuarioDao.Properties.DiaNascimento.eq(diaAniversario),
-        UsuarioDao.Properties.Nome.like(letraInicial+"%"));
+        qb.where(qb.and(UsuarioDao.Properties.DiaNascimento.eq(diaAniversario),
+                UsuarioDao.Properties.Nome.like(letraInicial+"%")));
         qb.orderAsc(UsuarioDao.Properties.Nome);
         List<Usuario> usuarios = qb.list();
-        telaDataAniversario.navigateBaterPonto(usuarios);
+        if(usuarios.size() == 1){
+            Date data = Calendar.getInstance().getTime();
+            Batida novaBatida = new Batida(null, data, usuarios.get(0).getId());
+            daoSession.insert(novaBatida);
+            final String horaAgora = (new SimpleDateFormat("dd/MM/yyyy 'as' hh:mm a", Locale.getDefault()).format(data)).toLowerCase();
+            telaDataAniversario.navigateToTelaSucesso(horaAgora);
+        }else if(usuarios.isEmpty()){
+            Toasty.error(currentContext, "Nenhum usuario encontrado.", Toast.LENGTH_SHORT, true).show();
+            telaDataAniversario.navigateToTelaInicial();
+        }else{
+            telaDataAniversario.navigateBaterPonto(usuarios);
+        }
     }
 
     public void updateLabel() {

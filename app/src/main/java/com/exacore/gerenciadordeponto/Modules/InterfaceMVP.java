@@ -2,6 +2,7 @@ package com.exacore.gerenciadordeponto.Modules;
 
 import android.content.Context;
 
+import com.exacore.gerenciadordeponto.Models.Batida;
 import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Models.Usuario;
 import com.exacore.gerenciadordeponto.Views.TelaCadastro;
@@ -47,10 +48,11 @@ public interface InterfaceMVP {
 
     interface ViewTelaDataAniversario {
         void navigateBaterPonto(List<Usuario> usuarios);
+        void navigateToTelaInicial();
+        void navigateToTelaSucesso(String horaAgora);
     }
 
     interface ViewTelaListaUsuarios {
-        void navigateToSucesso();
     }
 
     interface Presenter {
@@ -66,7 +68,7 @@ public interface InterfaceMVP {
         void cadastrarForm(String nomeCompleto, Date dataNascimento, String PIS);
         void setCurrentContext(Context current);
         void setDaoMaster(DaoMaster.DevOpenHelper helper);
-        ArrayList<String> loadAllUsers();
+        ArrayList<String> loadAllBatidas();
         void botaobotaoVoltarPrincipalOnClick();
         void botaobotaoVoltarPrincipalSucessoOnClick();
         void setTelaDataAniversario(TelaDataAniversario telaDataAniversario);

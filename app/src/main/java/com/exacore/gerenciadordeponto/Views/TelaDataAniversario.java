@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.exacore.gerenciadordeponto.Models.Batida;
 import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Models.Usuario;
 import com.exacore.gerenciadordeponto.Modules.InterfaceMVP;
@@ -50,6 +51,20 @@ public class TelaDataAniversario extends AppCompatActivity implements InterfaceM
                 }
             });
         }
+    }
+
+    @Override
+    public void navigateToTelaInicial() {
+        Intent intent = new Intent(this, TelaInicial.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void navigateToTelaSucesso(String horaAgora) {
+        Intent intent = new Intent(this, TelaMsgSucesso.class);
+        intent.putExtra("principal", "Batida registrada com sucesso!");
+        intent.putExtra("secundario", horaAgora);
+        this.startActivity(intent);
     }
 
     @Override

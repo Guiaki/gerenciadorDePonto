@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.exacore.gerenciadordeponto.Models.DaoMaster;
 import com.exacore.gerenciadordeponto.Models.Usuario;
 import com.exacore.gerenciadordeponto.Modules.InterfaceMVP;
 import com.exacore.gerenciadordeponto.Modules.RecyclerViewAdapterListaUsuarios;
@@ -31,19 +32,12 @@ public class TelaListaUsuarios extends AppCompatActivity implements InterfaceMVP
         iniciarRecyclerView();
     }
 
-    @Override
-    public void navigateToSucesso() {
-        Intent intent = new Intent(this, TelaMsgSucesso.class);
-        intent.putExtra("principal", "Cadastro realizado com sucesso!");
-        intent.putExtra("secundario", "Cadastro realizado com sucesso!");
-        startActivity(intent);
-    }
-
     public void iniciarRecyclerView(){
         RecyclerView recyclerView = findViewById(R.id.listaBatidas);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewAdapterListaUsuarios adapter = new RecyclerViewAdapterListaUsuarios(this, usuarios);
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "gerenciadorPonto.db", null);
+        RecyclerViewAdapterListaUsuarios adapter = new RecyclerViewAdapterListaUsuarios(this, usuarios, helper);
         recyclerView.setAdapter(adapter);
     }
 }
