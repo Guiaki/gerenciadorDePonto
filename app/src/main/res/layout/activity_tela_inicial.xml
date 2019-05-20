@@ -17,21 +17,36 @@
             android:id="@+id/botaoCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/botao_tela_principal"
             android:text="@string/botaoCadastro" />
 
         <Button
             android:id="@+id/botaoBaterPonto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/botao_tela_principal"
             android:text="@string/botaoBaterPonto" />
 
         <Button
             android:id="@+id/botaoVisualizarBatidas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/botao_tela_principal"
             android:text="@string/botaoVisualizarBatidas" />
     </LinearLayout>
 </LinearLayout>
