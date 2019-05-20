@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:id="@+id/parentLayout">
+
+    <Button
+        android:id="@+id/itemBotao"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:background="@drawable/botao_lista_usuarios"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/placeHolder"
+        android:textSize="16sp" />
+</RelativeLayout>

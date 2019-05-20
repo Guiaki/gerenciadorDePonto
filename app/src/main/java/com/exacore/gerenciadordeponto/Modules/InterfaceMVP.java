@@ -1,16 +1,14 @@
 package com.exacore.gerenciadordeponto.Modules;
 
 import android.content.Context;
-import android.text.Editable;
 
 import com.exacore.gerenciadordeponto.Models.DaoMaster;
-import com.exacore.gerenciadordeponto.Models.DaoSession;
 import com.exacore.gerenciadordeponto.Models.Usuario;
 import com.exacore.gerenciadordeponto.Views.TelaCadastro;
+import com.exacore.gerenciadordeponto.Views.TelaDataAniversario;
 import com.exacore.gerenciadordeponto.Views.TelaMsgSucesso;
 import com.exacore.gerenciadordeponto.Views.TelaVisualizarBatidas;
 
-import org.greenrobot.greendao.annotation.NotNull;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,29 +16,9 @@ import java.util.List;
 
 public interface InterfaceMVP {
     interface ModelBatida{
-        long getId();
-        void setId(long id);
-        Date getDataBatida();
-        void setDataBatida(Date dataBatida);
-        long getUsuarioId();
-        void setUsuarioId(long usuarioId);
-        Usuario getUsuario();
-        void setUsuario(@NotNull Usuario usuario);
-        void delete();
-        void refresh();
-        void update();
-        void __setDaoSession(DaoSession daoSession);
     }
 
     interface ModelUsuario{
-        Long getId();
-        void setId(Long id);
-        String getNome();
-        void setNome(String nome);
-        Date getDataNascimento();
-        void setDataNascimento(Date dataNascimento);
-        long getPIS();
-        void setPIS(long PIS);
     }
 
     interface ViewTelaInicial{
@@ -65,7 +43,14 @@ public interface InterfaceMVP {
     }
 
     interface ViewTelaBaterPonto{
-        void navigateToTelaInicial();
+    }
+
+    interface ViewTelaDataAniversario {
+        void navigateBaterPonto(List<Usuario> usuarios);
+    }
+
+    interface ViewTelaListaUsuarios {
+        void navigateToSucesso();
     }
 
     interface Presenter {
@@ -84,5 +69,8 @@ public interface InterfaceMVP {
         ArrayList<String> loadAllUsers();
         void botaobotaoVoltarPrincipalOnClick();
         void botaobotaoVoltarPrincipalSucessoOnClick();
+        void setTelaDataAniversario(TelaDataAniversario telaDataAniversario);
+        void onClickBaterPonto(String letraInicial, int diaAniversario);
     }
+
 }

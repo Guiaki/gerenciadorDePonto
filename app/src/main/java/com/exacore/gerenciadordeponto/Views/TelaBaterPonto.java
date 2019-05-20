@@ -1,5 +1,7 @@
 package com.exacore.gerenciadordeponto.Views;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,19 +27,16 @@ public class TelaBaterPonto extends AppCompatActivity implements InterfaceMVP.Vi
     private void createButtonList() {
         for (int i = 1; i < 27; i++) {
             int resID = getResources().getIdentifier("button" + i, "id", getPackageName());
-            Log.i("BaterPonto", "button"+i+" resID: "+resID);
             final Button botao = findViewById(resID);
+            final Context context = this;
             botao.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(TelaBaterPonto.this, botao.getText(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, TelaDataAniversario.class);
+                    intent.putExtra("letraInicial", botao.getText());
+                    startActivity(intent);
                 }
             });
         }
-    }
-
-    @Override
-    public void navigateToTelaInicial() {
-
     }
 }

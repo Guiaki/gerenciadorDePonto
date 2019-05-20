@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    tools:context=".Views.TelaBaterPonto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/textDiaAniversario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/hintDiaAniversario"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <GridLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/grid1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textDiaAniversario"
+            android:layout_centerInParent="true"
+            android:columnCount="7"
+            android:orientation="horizontal"
+            android:rowCount="5">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="50dp"
+                android:text="@string/_1" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="50dp"
+                android:text="@string/_2" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="50dp"
+                android:text="@string/_3" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="50dp"
+                android:text="@string/_4" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="50dp"
+                android:text="@string/_5" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="50dp"
+                android:text="@string/_6" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="50dp"
+                android:text="@string/_7" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="50dp"
+                android:text="@string/_8" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="50dp"
+                android:text="@string/_9" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="50dp"
+                android:text="@string/_10" />
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="50dp"
+                android:text="@string/_11" />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="50dp"
+                android:text="@string/_12" />
+
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="50dp"
+                android:text="@string/_13" />
+
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="50dp"
+                android:text="@string/_14" />
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="50dp"
+                android:text="@string/_15" />
+
+            <Button
+                android:id="@+id/button16"
+                android:layout_width="50dp"
+                android:text="@string/_16" />
+
+            <Button
+                android:id="@+id/button17"
+                android:layout_width="50dp"
+                android:text="@string/_17" />
+
+            <Button
+                android:id="@+id/button18"
+                android:layout_width="50dp"
+                android:text="@string/_18" />
+
+            <Button
+                android:id="@+id/button19"
+                android:layout_width="50dp"
+                android:text="@string/_19" />
+
+            <Button
+                android:id="@+id/button20"
+                android:layout_width="50dp"
+                android:text="@string/_20" />
+
+            <Button
+                android:id="@+id/button21"
+                android:layout_width="50dp"
+                android:text="@string/_21" />
+
+            <Button
+                android:id="@+id/button22"
+                android:layout_width="50dp"
+                android:text="@string/_22" />
+
+            <Button
+                android:id="@+id/button23"
+                android:layout_width="50dp"
+                android:text="@string/_23" />
+
+            <Button
+                android:id="@+id/button24"
+                android:layout_width="50dp"
+                android:text="@string/_24" />
+
+            <Button
+                android:id="@+id/button25"
+                android:layout_width="50dp"
+                android:text="@string/_25" />
+
+            <Button
+                android:id="@+id/button26"
+                android:layout_width="50dp"
+                android:text="@string/_26" />
+
+            <Button
+                android:id="@+id/button27"
+                android:layout_width="50dp"
+                android:text="@string/_27" />
+
+            <Button
+                android:id="@+id/button28"
+                android:layout_width="50dp"
+                android:text="@string/_28" />
+            <Button
+                android:id="@+id/button29"
+                android:layout_width="50dp"
+                android:text="@string/_29" />
+
+            <Button
+                android:id="@+id/button30"
+                android:layout_width="50dp"
+                android:text="@string/_30" />
+
+            <Button
+                android:id="@+id/button31"
+                android:layout_width="50dp"
+                android:text="@string/_31" />
+        </GridLayout>
+    </RelativeLayout>
+</RelativeLayout>

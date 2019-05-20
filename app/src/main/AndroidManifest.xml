@@ -19,7 +19,9 @@
         <activity android:name=".Views.TelaCadastro" />
         <activity android:name=".Views.TelaVisualizarBatidas" />
         <activity android:name=".Views.TelaMsgSucesso" />
-        <activity android:name=".Views.TelaBaterPonto"></activity>
+        <activity android:name=".Views.TelaBaterPonto" />
+        <activity android:name=".Views.TelaDataAniversario" />
+        <activity android:name=".Views.TelaListaUsuarios"></activity>
     </application>
 
 </manifest>

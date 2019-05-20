@@ -9,14 +9,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.exacore.gerenciadordeponto.Models.DaoMaster;
-import com.exacore.gerenciadordeponto.Models.Usuario;
 import com.exacore.gerenciadordeponto.Modules.InterfaceMVP;
 import com.exacore.gerenciadordeponto.Modules.Presenter;
-import com.exacore.gerenciadordeponto.Modules.RecyclerViewAdapter;
+import com.exacore.gerenciadordeponto.Modules.RecyclerViewAdapterVisualizarBatidas;
 import com.exacore.gerenciadordeponto.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TelaVisualizarBatidas extends AppCompatActivity implements InterfaceMVP.ViewTelaVisualizarBatidas{
 
@@ -57,7 +55,7 @@ public class TelaVisualizarBatidas extends AppCompatActivity implements Interfac
         RecyclerView recyclerView = findViewById(R.id.listaBatidas);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, usuarios);
+        RecyclerViewAdapterVisualizarBatidas adapter = new RecyclerViewAdapterVisualizarBatidas(this, usuarios);
         recyclerView.setAdapter(adapter);
     }
 }

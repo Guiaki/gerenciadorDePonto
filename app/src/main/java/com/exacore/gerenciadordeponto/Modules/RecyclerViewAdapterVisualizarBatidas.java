@@ -1,9 +1,7 @@
 package com.exacore.gerenciadordeponto.Modules;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +12,10 @@ import com.exacore.gerenciadordeponto.R;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapterVisualizarBatidas extends RecyclerView.Adapter<RecyclerViewAdapterVisualizarBatidas.ViewHolder> {
     private ArrayList<String> listaPontos;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> listaPontos) {
+    public RecyclerViewAdapterVisualizarBatidas(Context context, ArrayList<String> listaPontos) {
         this.listaPontos = listaPontos;
         this.context = context;
     }
@@ -25,9 +23,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context context;
 
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewAdapterVisualizarBatidas.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_recycler_view_batidas, parent, false);
-        RecyclerViewAdapter.ViewHolder holder = new RecyclerViewAdapter.ViewHolder(view);
+        RecyclerViewAdapterVisualizarBatidas.ViewHolder holder = new RecyclerViewAdapterVisualizarBatidas.ViewHolder(view);
         return holder;
     }
 

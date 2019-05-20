@@ -24,8 +24,10 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Nome = new Property(1, String.class, "nome", false, "NOME");
-        public final static Property DataNascimento = new Property(2, java.util.Date.class, "dataNascimento", false, "DATA_NASCIMENTO");
-        public final static Property PIS = new Property(3, long.class, "PIS", false, "PIS");
+        public final static Property DiaNascimento = new Property(2, int.class, "diaNascimento", false, "DIA_NASCIMENTO");
+        public final static Property MesNascimento = new Property(3, int.class, "mesNascimento", false, "MES_NASCIMENTO");
+        public final static Property AnoNascimento = new Property(4, int.class, "anoNascimento", false, "ANO_NASCIMENTO");
+        public final static Property PIS = new Property(5, long.class, "PIS", false, "PIS");
     }
 
 
@@ -43,8 +45,10 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"USUARIO\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"NOME\" TEXT," + // 1: nome
-                "\"DATA_NASCIMENTO\" INTEGER," + // 2: dataNascimento
-                "\"PIS\" INTEGER NOT NULL );"); // 3: PIS
+                "\"DIA_NASCIMENTO\" INTEGER NOT NULL ," + // 2: diaNascimento
+                "\"MES_NASCIMENTO\" INTEGER NOT NULL ," + // 3: mesNascimento
+                "\"ANO_NASCIMENTO\" INTEGER NOT NULL ," + // 4: anoNascimento
+                "\"PIS\" INTEGER NOT NULL );"); // 5: PIS
     }
 
     /** Drops the underlying database table. */
@@ -66,12 +70,10 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
         if (nome != null) {
             stmt.bindString(2, nome);
         }
- 
-        java.util.Date dataNascimento = entity.getDataNascimento();
-        if (dataNascimento != null) {
-            stmt.bindLong(3, dataNascimento.getTime());
-        }
-        stmt.bindLong(4, entity.getPIS());
+        stmt.bindLong(3, entity.getDiaNascimento());
+        stmt.bindLong(4, entity.getMesNascimento());
+        stmt.bindLong(5, entity.getAnoNascimento());
+        stmt.bindLong(6, entity.getPIS());
     }
 
     @Override
@@ -87,12 +89,10 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
         if (nome != null) {
             stmt.bindString(2, nome);
         }
- 
-        java.util.Date dataNascimento = entity.getDataNascimento();
-        if (dataNascimento != null) {
-            stmt.bindLong(3, dataNascimento.getTime());
-        }
-        stmt.bindLong(4, entity.getPIS());
+        stmt.bindLong(3, entity.getDiaNascimento());
+        stmt.bindLong(4, entity.getMesNascimento());
+        stmt.bindLong(5, entity.getAnoNascimento());
+        stmt.bindLong(6, entity.getPIS());
     }
 
     @Override
@@ -105,8 +105,10 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
         Usuario entity = new Usuario( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // nome
-            cursor.isNull(offset + 2) ? null : new java.util.Date(cursor.getLong(offset + 2)), // dataNascimento
-            cursor.getLong(offset + 3) // PIS
+            cursor.getInt(offset + 2), // diaNascimento
+            cursor.getInt(offset + 3), // mesNascimento
+            cursor.getInt(offset + 4), // anoNascimento
+            cursor.getLong(offset + 5) // PIS
         );
         return entity;
     }
@@ -115,8 +117,10 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
     public void readEntity(Cursor cursor, Usuario entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setNome(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setDataNascimento(cursor.isNull(offset + 2) ? null : new java.util.Date(cursor.getLong(offset + 2)));
-        entity.setPIS(cursor.getLong(offset + 3));
+        entity.setDiaNascimento(cursor.getInt(offset + 2));
+        entity.setMesNascimento(cursor.getInt(offset + 3));
+        entity.setAnoNascimento(cursor.getInt(offset + 4));
+        entity.setPIS(cursor.getLong(offset + 5));
      }
     
     @Override
